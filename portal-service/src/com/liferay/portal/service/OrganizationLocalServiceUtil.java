@@ -367,6 +367,20 @@ public class OrganizationLocalServiceUtil {
 		getService().deleteLogo(organizationId);
 	}
 
+	public static com.liferay.portal.model.Organization fetchOrganization(
+		java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchOrganization(uuid);
+	}
+
+	public static java.io.File exportOrganizationAsFile(long companyId,
+		long organizationId, long userId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .exportOrganizationAsFile(companyId, organizationId, userId);
+	}
+
 	/**
 	* Returns all the organizations belonging to the group.
 	*
@@ -754,6 +768,12 @@ public class OrganizationLocalServiceUtil {
 		return getService()
 				   .hasUserOrganization(userId, organizationId,
 			inheritSuborganizations, includeSpecifiedOrganization);
+	}
+
+	public static void importOrganization(long companyId, java.io.File file)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().importOrganization(companyId, file);
 	}
 
 	/**

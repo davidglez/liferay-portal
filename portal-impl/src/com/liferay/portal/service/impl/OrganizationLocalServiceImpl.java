@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.lar.model.OrganizationPortalDataHandler;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
@@ -59,6 +60,7 @@ import com.liferay.portal.util.PropsUtil;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.portal.util.comparator.OrganizationNameComparator;
 
+import java.io.File;
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -353,6 +355,22 @@ public class OrganizationLocalServiceImpl
 			organizationId);
 
 		return deleteOrganization(organization);
+	}
+
+	public Organization fetchOrganization(String uuid) throws SystemException {
+
+		return organizationPersistence.fetchByUuid_First(uuid, null);
+	}
+
+	public File exportOrganizationAsFile (
+			long companyId, long organizationId, long userId)
+		throws PortalException, SystemException {
+
+		OrganizationPortalDataHandler organizationPortalDataHandler =
+			new OrganizationPortalDataHandler();
+
+		return organizationPortalDataHandler.exportOrganizationAsFile(companyId,
+			organizationId, userId);
 	}
 
 	/**
@@ -987,6 +1005,16 @@ public class OrganizationLocalServiceImpl
 		}
 
 		return false;
+	}
+
+	public void importOrganization(long companyId, File file)
+		throws PortalException, SystemException {
+
+		OrganizationPortalDataHandler organizationPortalDataHandler =
+			new OrganizationPortalDataHandler();
+
+		organizationPortalDataHandler.importOrganization(
+			companyId, file);
 	}
 
 	/**

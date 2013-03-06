@@ -108,6 +108,8 @@ public class OrganizationPersistenceTest {
 
 		Organization newOrganization = _persistence.create(pk);
 
+		newOrganization.setUuid(ServiceTestUtil.randomString());
+
 		newOrganization.setCompanyId(ServiceTestUtil.nextLong());
 
 		newOrganization.setParentOrganizationId(ServiceTestUtil.nextLong());
@@ -132,6 +134,8 @@ public class OrganizationPersistenceTest {
 
 		Organization existingOrganization = _persistence.findByPrimaryKey(newOrganization.getPrimaryKey());
 
+		Assert.assertEquals(existingOrganization.getUuid(),
+			newOrganization.getUuid());
 		Assert.assertEquals(existingOrganization.getOrganizationId(),
 			newOrganization.getOrganizationId());
 		Assert.assertEquals(existingOrganization.getCompanyId(),
@@ -294,6 +298,8 @@ public class OrganizationPersistenceTest {
 		long pk = ServiceTestUtil.nextLong();
 
 		Organization organization = _persistence.create(pk);
+
+		organization.setUuid(ServiceTestUtil.randomString());
 
 		organization.setCompanyId(ServiceTestUtil.nextLong());
 

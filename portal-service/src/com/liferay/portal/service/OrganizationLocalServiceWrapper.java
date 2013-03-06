@@ -358,6 +358,20 @@ public class OrganizationLocalServiceWrapper implements OrganizationLocalService
 		_organizationLocalService.deleteLogo(organizationId);
 	}
 
+	public com.liferay.portal.model.Organization fetchOrganization(
+		java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _organizationLocalService.fetchOrganization(uuid);
+	}
+
+	public java.io.File exportOrganizationAsFile(long companyId,
+		long organizationId, long userId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _organizationLocalService.exportOrganizationAsFile(companyId,
+			organizationId, userId);
+	}
+
 	/**
 	* Returns all the organizations belonging to the group.
 	*
@@ -748,6 +762,12 @@ public class OrganizationLocalServiceWrapper implements OrganizationLocalService
 		return _organizationLocalService.hasUserOrganization(userId,
 			organizationId, inheritSuborganizations,
 			includeSpecifiedOrganization);
+	}
+
+	public void importOrganization(long companyId, java.io.File file)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_organizationLocalService.importOrganization(companyId, file);
 	}
 
 	/**
