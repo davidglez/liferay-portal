@@ -197,9 +197,24 @@ public class LayoutExporter {
 		}
 	}
 
-	protected File doExportLayoutsAsFile(
+	public File doExportLayoutsAsFile(long groupId, boolean privateLayout,
+			long[] layoutIds, Map<String, String[]> parameterMap,
+			Date startDate, Date endDate)
+		throws Exception {
+
+		ZipWriter zipWriter = ZipWriterFactoryUtil.getZipWriter();
+
+		doBaseExportLayoutsAsFile(groupId, privateLayout, layoutIds,
+			parameterMap, startDate, endDate, zipWriter);
+
+		return zipWriter.getFile();
+
+	}
+
+	public void doBaseExportLayoutsAsFile(
 			long groupId, boolean privateLayout, long[] layoutIds,
-			Map<String, String[]> parameterMap, Date startDate, Date endDate)
+			Map<String, String[]> parameterMap, Date startDate, Date endDate,
+			ZipWriter zipWriter)
 		throws Exception {
 
 		boolean exportCategories = MapUtil.getBoolean(
@@ -283,8 +298,6 @@ public class LayoutExporter {
 		}
 
 		LayoutCache layoutCache = new LayoutCache();
-
-		ZipWriter zipWriter = ZipWriterFactoryUtil.getZipWriter();
 
 		PortletDataContext portletDataContext = new PortletDataContextImpl(
 			companyId, groupId, parameterMap, new HashSet<String>(), startDate,
@@ -549,14 +562,10 @@ public class LayoutExporter {
 		portletDataContext.addZipEntry(
 			"/manifest.xml", document.formattedString());
 
-		try {
-			return zipWriter.getFile();
+		if (updateLastPublishDate) {
+			updateLastPublishDate(layoutSet, lastPublishDate);
 		}
-		finally {
-			if (updateLastPublishDate) {
-				updateLastPublishDate(layoutSet, lastPublishDate);
-			}
-		}
+
 	}
 
 	protected void exportAssetCategories(PortletDataContext portletDataContext)
