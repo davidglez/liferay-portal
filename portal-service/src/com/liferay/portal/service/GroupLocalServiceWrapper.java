@@ -410,6 +410,12 @@ public class GroupLocalServiceWrapper implements GroupLocalService,
 		return _groupLocalService.fetchGroup(companyId, name);
 	}
 
+	public java.util.List<com.liferay.portal.model.Role> fetchGroupRoles(
+		long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _groupLocalService.fetchGroupRoles(groupId);
+	}
+
 	/**
 	* Returns the company group.
 	*
@@ -810,6 +816,12 @@ public class GroupLocalServiceWrapper implements GroupLocalService,
 	public java.util.List<com.liferay.portal.model.Group> getRoleGroups(
 		long roleId) throws com.liferay.portal.kernel.exception.SystemException {
 		return _groupLocalService.getRoleGroups(roleId);
+	}
+
+	public java.util.List<com.liferay.portal.model.Role> getRoles(long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _groupLocalService.getRoles(groupId);
 	}
 
 	/**

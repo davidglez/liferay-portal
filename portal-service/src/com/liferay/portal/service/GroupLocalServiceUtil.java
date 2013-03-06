@@ -420,6 +420,12 @@ public class GroupLocalServiceUtil {
 		return getService().fetchGroup(companyId, name);
 	}
 
+	public static java.util.List<com.liferay.portal.model.Role> fetchGroupRoles(
+		long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchGroupRoles(groupId);
+	}
+
 	/**
 	* Returns the company group.
 	*
@@ -818,6 +824,13 @@ public class GroupLocalServiceUtil {
 	public static java.util.List<com.liferay.portal.model.Group> getRoleGroups(
 		long roleId) throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getRoleGroups(roleId);
+	}
+
+	public static java.util.List<com.liferay.portal.model.Role> getRoles(
+		long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getRoles(groupId);
 	}
 
 	/**

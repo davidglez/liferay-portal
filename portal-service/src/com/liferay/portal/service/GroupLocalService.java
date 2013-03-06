@@ -374,6 +374,11 @@ public interface GroupLocalService extends BaseLocalService,
 		java.lang.String name)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.portal.model.Role> fetchGroupRoles(
+		long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the company group.
 	*
@@ -743,6 +748,11 @@ public interface GroupLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.portal.model.Group> getRoleGroups(
 		long roleId) throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.portal.model.Role> getRoles(long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns the staging group.

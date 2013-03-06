@@ -846,6 +846,10 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		return groupLocalService.loadFetchGroup(companyId, name);
 	}
 
+	public List<Role> fetchGroupRoles(long groupId) throws SystemException {
+		return groupPersistence.getRoles(groupId);
+	}
+
 	/**
 	 * Returns the company group.
 	 *
@@ -1402,6 +1406,18 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	 */
 	public List<Group> getRoleGroups(long roleId) throws SystemException {
 		return rolePersistence.getGroups(roleId);
+	}
+
+	public List<Role> getRoles(long groupId)
+		throws SystemException, PortalException {
+
+		List<Role> roles = groupPersistence.getRoles(groupId);
+
+		if(roles.isEmpty()){
+			throw new PortalException();
+		}
+
+		return roles;
 	}
 
 	/**
