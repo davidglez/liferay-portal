@@ -396,6 +396,21 @@ public class UserGroupLocalServiceWrapper implements UserGroupLocalService,
 		_userGroupLocalService.copyUserGroupLayouts(userGroupIds, userId);
 	}
 
+	public java.io.File exportUserGroupAsFile(long companyId,
+		java.util.Map<java.lang.String, java.lang.String[]> parameterMap,
+		long userGroupId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _userGroupLocalService.exportUserGroupAsFile(companyId,
+			parameterMap, userGroupId);
+	}
+
+	public com.liferay.portal.model.UserGroup fetchUserGroup(long companyId,
+		java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _userGroupLocalService.fetchUserGroup(companyId, name);
+	}
+
 	/**
 	* Returns the user group with the name.
 	*
@@ -478,6 +493,15 @@ public class UserGroupLocalServiceWrapper implements UserGroupLocalService,
 	public boolean hasTeamUserGroup(long teamId, long userGroupId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _userGroupLocalService.hasTeamUserGroup(teamId, userGroupId);
+	}
+
+	public void importUserGroup(long companyId,
+		java.util.Map<java.lang.String, java.lang.String[]> parameterMap,
+		long userId, java.io.File file)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_userGroupLocalService.importUserGroup(companyId, parameterMap, userId,
+			file);
 	}
 
 	/**

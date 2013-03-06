@@ -359,6 +359,17 @@ public interface UserGroupLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	public java.io.File exportUserGroupAsFile(long companyId,
+		java.util.Map<java.lang.String, java.lang.String[]> parameterMap,
+		long userGroupId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.model.UserGroup fetchUserGroup(long companyId,
+		java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Returns the user group with the name.
 	*
@@ -436,6 +447,12 @@ public interface UserGroupLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public boolean hasTeamUserGroup(long teamId, long userGroupId)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public void importUserGroup(long companyId,
+		java.util.Map<java.lang.String, java.lang.String[]> parameterMap,
+		long userId, java.io.File file)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns an ordered range of all the user groups that match the keywords.

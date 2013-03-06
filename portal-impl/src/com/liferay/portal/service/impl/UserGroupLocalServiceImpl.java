@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.lar.model.UserGroupPortalDataHandler;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.ResourceConstants;
@@ -394,6 +395,23 @@ public class UserGroupLocalServiceImpl extends UserGroupLocalServiceBaseImpl {
 		return userGroup;
 	}
 
+	public File exportUserGroupAsFile(long companyId,
+			Map<String, String[]> parameterMap, long userGroupId)
+		throws PortalException, SystemException {
+
+		UserGroupPortalDataHandler userGroupPortalDataHandler =
+			new UserGroupPortalDataHandler();
+
+		return userGroupPortalDataHandler.exportUserGroupAsFile(
+			companyId, parameterMap, userGroupId);
+	}
+
+	public UserGroup fetchUserGroup(long companyId, String name)
+		throws SystemException{
+
+		return userGroupPersistence.fetchByC_N(companyId, name);
+	}
+
 	/**
 	 * Returns the user group with the name.
 	 *
@@ -486,6 +504,17 @@ public class UserGroupLocalServiceImpl extends UserGroupLocalServiceBaseImpl {
 		throws SystemException {
 
 		return teamPersistence.containsUserGroup(teamId, userGroupId);
+	}
+
+	public void importUserGroup(long companyId, Map<String,
+			String[]> parameterMap, long userId, File file)
+		throws PortalException, SystemException {
+
+		UserGroupPortalDataHandler userGroupPortalDataHandler =
+			new UserGroupPortalDataHandler();
+
+		userGroupPortalDataHandler.importUserGroup(
+			companyId, parameterMap, userId, file);
 	}
 
 	/**

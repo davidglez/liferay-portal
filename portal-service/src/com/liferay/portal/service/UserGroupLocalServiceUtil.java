@@ -407,6 +407,21 @@ public class UserGroupLocalServiceUtil {
 		getService().copyUserGroupLayouts(userGroupIds, userId);
 	}
 
+	public static java.io.File exportUserGroupAsFile(long companyId,
+		java.util.Map<java.lang.String, java.lang.String[]> parameterMap,
+		long userGroupId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .exportUserGroupAsFile(companyId, parameterMap, userGroupId);
+	}
+
+	public static com.liferay.portal.model.UserGroup fetchUserGroup(
+		long companyId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchUserGroup(companyId, name);
+	}
+
 	/**
 	* Returns the user group with the name.
 	*
@@ -489,6 +504,14 @@ public class UserGroupLocalServiceUtil {
 	public static boolean hasTeamUserGroup(long teamId, long userGroupId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().hasTeamUserGroup(teamId, userGroupId);
+	}
+
+	public static void importUserGroup(long companyId,
+		java.util.Map<java.lang.String, java.lang.String[]> parameterMap,
+		long userId, java.io.File file)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().importUserGroup(companyId, parameterMap, userId, file);
 	}
 
 	/**
