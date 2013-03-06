@@ -456,6 +456,7 @@
 		<field name="statusId" type="int" />
 	</model>
 	<model name="com.liferay.portal.model.Organization">
+		<field name="uuid" type="String" />
 		<field name="organizationId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="parentOrganizationId" type="long" />

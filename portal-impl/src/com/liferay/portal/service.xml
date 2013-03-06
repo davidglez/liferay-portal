@@ -989,7 +989,7 @@
 
 		<reference package-path="com.liferay.mail" entity="Mail" />
 	</entity>
-	<entity name="Organization" local-service="true" remote-service="true">
+	<entity name="Organization" uuid="true" local-service="true" remote-service="true">
 
 		<!-- PK fields -->
 

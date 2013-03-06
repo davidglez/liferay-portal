@@ -587,6 +587,9 @@
 	<mapped-superclass class="com.liferay.portal.model.impl.OrganizationModelImpl">
 		<attributes>
 			<id name="organizationId" />
+			<basic name="uuid">
+				<column name="UUID_" />
+			</basic>
 			<basic name="companyId" />
 			<basic name="parentOrganizationId" />
 			<basic name="treePath" />

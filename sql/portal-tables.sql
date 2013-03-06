@@ -1318,6 +1318,7 @@ create table MembershipRequest (
 );
 
 create table Organization_ (
+	uuid_ VARCHAR(75) null,
 	organizationId LONG not null primary key,
 	companyId LONG,
 	parentOrganizationId LONG,
