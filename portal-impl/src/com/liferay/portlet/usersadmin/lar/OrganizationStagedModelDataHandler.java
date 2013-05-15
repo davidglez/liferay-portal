@@ -408,25 +408,29 @@ public class OrganizationStagedModelDataHandler
 			portletDataContext.getReferenceDataElements(
 				organization, PasswordPolicy.class);
 
-		Element passwordPolicyElement = passwordPolicyElements.get(0);
+		if (!passwordPolicyElements.isEmpty()) {
 
-		String path = passwordPolicyElement.attributeValue("path");
+			Element passwordPolicyElement = passwordPolicyElements.get(0);
 
-		PasswordPolicy importedPasswordPolicy =
-			(PasswordPolicy)portletDataContext.getZipEntryAsObject(path);
+			String path = passwordPolicyElement.attributeValue("path");
 
-		StagedModelDataHandlerUtil.importStagedModel(
-			portletDataContext, importedPasswordPolicy);
+			PasswordPolicy importedPasswordPolicy =
+				(PasswordPolicy)portletDataContext.getZipEntryAsObject(path);
 
-		Map<Long, Long> newPrimaryKeysMap =
-			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
-				PasswordPolicy.class);
+			StagedModelDataHandlerUtil.importStagedModel(
+				portletDataContext, importedPasswordPolicy);
 
-		long passwordPolicyId = newPrimaryKeysMap.get(
-			importedPasswordPolicy.getPrimaryKey());
+			Map<Long, Long> newPrimaryKeysMap =
+				(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
+					PasswordPolicy.class);
 
-		OrganizationLocalServiceUtil.addPasswordPolicyOrganizations(
-			passwordPolicyId, new long[] { organization.getOrganizationId() });
+			long passwordPolicyId = newPrimaryKeysMap.get(
+				importedPasswordPolicy.getPrimaryKey());
+
+			OrganizationLocalServiceUtil.addPasswordPolicyOrganizations(
+				passwordPolicyId,
+				new long[] { organization.getOrganizationId() });
+		}
 	}
 
 	protected void importPhones(
